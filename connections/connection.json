@@ -1,0 +1,67 @@
+{
+  "token": {
+    "condition": "{{if(data.accessToken; data.expires < addMinutes(now; 1); true)}}",
+    
+    "url": "https://app-academy.make.com/api/v3/token",
+    "method": "POST",
+    "body": {
+      "username": "{{parameters.username}}",
+      "password": "{{parameters.password}}",
+      "grant_type": "password"
+    },
+    "type": "json",
+    
+    "response": {
+      "data": {
+        "expires": "{{addMinutes(now; body.expires_in)}}",
+        "accessToken": "{{body.access_token}}",
+        "refreshToken": "{{body.refresh_token}}"
+      }
+    },
+    
+    "log": {
+      "sanitize": [
+        "request.body.password",
+        "response.body.access_token",
+        "response.body.refresh_token"
+      ]
+    }
+  },
+  
+  "refresh": {
+    "url": "https://app-academy.make.com/api/v3/token",
+    "method": "POST",
+    "body": {
+      "grant_type": "refresh_token",
+      "refresh_token": "{{connection.refreshToken}}"
+    },
+    "type": "json",
+    
+    "response": {
+      "data": {
+        "expires": "{{addMinutes(now; body.expires_in)}}",
+        "accessToken": "{{body.access_token}}",
+        "refreshToken": "{{body.refresh_token}}"
+      }
+    }
+  },
+  
+  "info": {
+    "url": "https://app-academy.make.com/api/v3/whoami",
+    "headers": {
+      "authorization": "Bearer {{connection.accessToken}}"
+    },
+    "response": {
+      "uid": "{{body.username}}",
+      "metadata": {
+        "type": "text",
+        "value": "{{body.name}}"
+      }
+    },
+    "log": {
+      "sanitize": ["request.headers.authorization"]
+    }
+  },
+  
+  "invalidate": {}
+}

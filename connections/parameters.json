@@ -1,0 +1,32 @@
+[
+	{
+		"name": "username",
+		"type": "text",
+		"label": "Username",
+		"required": true,
+		"advanced": true,
+		"editable": true
+	},
+	{
+		"name": "password",
+		"type": "password",
+		"label": "Password",
+		"required": true,
+		"advanced": true,
+		"editable": true
+	},
+	{
+		"name": "clientId",
+		"type": "text",
+		"label": "Client ID",
+		"advanced": true,
+		"editable": true
+	},
+	{
+		"name": "clientSecret",
+		"type": "password",
+		"label": "Client Secret",
+		"advanced": true,
+		"editable": true
+	}
+]
