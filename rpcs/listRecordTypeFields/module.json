@@ -1,0 +1,23 @@
+[
+  {
+    "url": "/recordTypes/{{parameters.recordType}}",
+    "method": "GET",
+    "headers": {},
+    "response": {
+      "iterate": {
+        "container": "{{body.recordParameters}}",
+        "condition": "{{item.updatable === true}}"
+      },
+      "output": {
+        "{{...}}": "{{pick(item, 'name', 'label')}}",
+        "required": "{{if(parameters.mode === 'update', false, item.mandatory)}}",
+        "spec": [
+          "rpc://getDynamicNestedFields?data={{createJSON(item.nestedParameters)}}"
+        ],
+        "type": "{{if(item.refersTo, 'select', item.type)}}",
+        "multiple": "{{item.refersTo && item.type === 'array'}}",
+        "options": "{{if(typeof item.refersTo === 'string', 'rpc://listRecords?recordType=' + item.refersTo, undefined)}}"
+      }
+    }
+  }
+]
