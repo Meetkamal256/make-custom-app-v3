@@ -1,0 +1,13 @@
+{
+  "url": "https://app-academy.make.com/api/v3/whoami",
+  "method": "GET",
+  "headers": {
+    "Authorization": "Bearer {{connection.accessToken}}"
+  },
+  "response": {
+    "output": {
+      "username": "{{body.username}}",
+      "name": "{{body.name}}"
+    }
+  }
+}

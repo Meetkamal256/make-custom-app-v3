@@ -1,0 +1,85 @@
+[
+  {
+    "temp": {
+      "offset": 0,
+      "maxChunkSize": 1
+    }
+  },
+  {
+    "url": "/files/upload/openSlot",
+    "method": "POST",
+    "headers": {},
+    "qs": {},
+    "body": {
+      "path": "{{parameters.parent}}",
+      "fileName": "{{parameters.filename}}"
+    },
+    "response": {
+      "temp": {
+        "session_id": "{{body.session_id}}"
+      },
+      "output": {},
+      "valid": "{{body.session_id}}"
+    }
+  },
+  {
+    "url": "/files/upload/start",
+    "method": "POST",
+    "type": "binary",
+    "headers": {
+      "Content-Type": "application/octet-stream",
+      "session-id": "{{temp.session_id}}"
+    },
+    "qs": {},
+    "body": "{{sliceBuffer(parameters.data, temp.offset, temp.maxChunkSize)}}",
+    "response": {
+      "temp": {
+        "session_id": "{{body.session_id}}"
+      },
+      "output": {},
+      "valid": "{{body.session_id}}"
+    }
+  },
+  {
+    "condition": "{{length(parameters.data) - 1 > temp.offset}}",
+    "repeat": {
+      "condition": "{{length(parameters.data) - 1 > temp.offset}}",
+      "delay": 1000
+    },
+    "type": "binary",
+    "url": "/files/upload/append",
+    "method": "POST",
+    "temp": {
+      "offset": "{{temp.offset + temp.maxChunkSize}}"
+    },
+    "headers": {
+      "Content-Type": "application/octet-stream",
+      "session-id": "{{temp.session_id}}",
+      "offset": "{{temp.offset}}"
+    },
+    "qs": {},
+    "body": "{{sliceBuffer(parameters.data, temp.offset, temp.maxChunkSize)}}",
+    "response": {
+      "temp": {
+        "session_id": "{{body.session_id}}"
+      },
+      "output": {},
+      "valid": "{{body.session_id}}"
+    }
+  },
+  {
+    "url": "/files/upload/finish",
+    "method": "POST",
+    "type": "binary",
+    "headers": {
+      "Content-Type": "application/octet-stream",
+      "session-id": "{{temp.session_id}}"
+    },
+    "qs": {},
+    "body": "{{sliceBuffer(parameters.data, temp.offset, temp.maxChunkSize)}}",
+    "response": {
+      "output": "{{body}}",
+      "valid": "{{body.file_id}}"
+    }
+  }
+]

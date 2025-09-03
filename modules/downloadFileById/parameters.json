@@ -1,0 +1,9 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "File ID",
+    "required": true,
+    "help": "The unique identifier of the file to download."
+  }
+]

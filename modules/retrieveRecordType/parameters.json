@@ -1,0 +1,14 @@
+[
+  {
+    "name": "name",
+    "type": "select",
+    "label": "Record Type Name",
+    "required": true,
+    "options": {
+      "store": "rpc://listRecordTypes",
+      "placeholder": {
+        "label": "Select record type..."
+      }
+    }
+  }
+]

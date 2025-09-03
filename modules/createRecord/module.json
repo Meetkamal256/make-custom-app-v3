@@ -1,0 +1,16 @@
+{
+  "url": "/{{parameters.recordType}}",
+  "method": "POST",
+  "headers": {},
+  "qs": {},
+  "body": {
+    "{{...}}": "{{formatDatesInObject(omit(parameters,'recordType'))}}"
+  },
+  
+  "response": {
+    "output": {
+      "{{...}}": "{{parseDatesInObject(body, 'YYYY-MM-DDTHH:mm:ss+Z')}}"
+    },
+    "valid": "{{!body.errors}}"
+  }
+}

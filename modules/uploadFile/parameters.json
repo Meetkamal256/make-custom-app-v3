@@ -1,0 +1,30 @@
+[
+  {
+    "name": "parent",
+    "label": "Parent Folder",
+    "type": "folder",
+    "help": "Parent folder to upload files to.",
+    "required": true,
+    "options": {
+      "store": "rpc://listFolders",
+      "ids": true,
+      "showRoot": false
+    }
+  },
+  {
+    "name": "filename",
+    "type": "text",
+    "semantic": "file:name",
+    "required": true,
+    "label": "File Name",
+    "help": "A name of the file to be uploaded. For example, `make.txt`."
+  },
+  {
+    "name": "data",
+    "type": "buffer",
+    "label": "File Data",
+    "semantic": "file:data",
+    "required": true,
+    "help": "A binary file data to upload."
+  }
+]

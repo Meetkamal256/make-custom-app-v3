@@ -1,0 +1,22 @@
+{
+  "url": "/{{parameters.recordType}}/query",
+  "method": "POST",
+  "headers": {},
+  "body": "{{transformFilters(parameters.search)}}",
+  "response": {
+    "type": "json",
+    "iterate": "{{body.records}}",
+    "output": {
+      "{{...}}": "{{omit(item, 'createdAt', 'updatedAt')}}",
+      "createdAt": "{{parseDate(item.createdAt, 'YYYY-MM-DDTHH:mm:ss+Z')}}",
+      "updatedAt": "{{parseDate(item.updatedAt, 'YYYY-MM-DDTHH:mm:ss+Z')}}"
+    },
+    "limit": "{{parameters.limit}}"
+  },
+  "pagination": {
+    "condition": "{{(pagination.page - 1) * 5 < parameters.limit && body.totalRecordsReturned > (pagination.page - 1) * 5}}",
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 5}}"
+    }
+  }
+}

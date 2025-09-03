@@ -1,0 +1,23 @@
+[
+  {
+    "name": "recordType",
+    "label": "Record Type",
+    "type": "select",
+    "help": "Type of the record to update, e.g., movie.",
+    "required": true,
+    "options": {
+      "store": "rpc://listRecordTypes?filter=updatable",
+      "nested": [
+        {
+          "name": "id",
+          "type": "select",
+          "label": "Record ID",
+          "required": true,
+          "options": "rpc://listRecords",
+          "help": "A record ID to be updated."
+        },
+        "rpc://listRecordTypeFields?mode=update"
+      ]
+    }
+  }
+]

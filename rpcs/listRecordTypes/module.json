@@ -1,0 +1,17 @@
+{
+  "url": "/recordTypes",
+  "method": "GET",
+  "qs": {},
+  "body": {},
+  "headers": {},
+  "response": {
+    "iterate": {
+      "container": "{{body.recordTypes}}",
+      "condition": "{{if(parameters.filter, get(item, parameters.filter) === true, true)}}"
+    },
+    "output": {
+      "label": "{{item.label}}",
+      "value": "{{item.name}}"
+    }
+  }
+}

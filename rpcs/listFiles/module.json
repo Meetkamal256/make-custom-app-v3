@@ -1,0 +1,24 @@
+{
+  "url": "/files",
+  "method": "GET",
+  "qs": {
+    "parent": "{{parsePath(parameters.file))}}"
+  },
+  "body": {},
+  "headers": {},
+  "response": {
+    "iterate": "{{body.items}}",
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}",
+      "file": "{{item.type === 'file'}}"
+    },
+    "limit": 300
+  },
+  "pagination": {
+    "condition": "{{(pagination.page - 1) * 5 < 300 && body.totalRecordsReturned > (pagination.page - 1) * 5}}",
+    "qs": {
+      "page": "{{pagination.page}}"
+    }
+  }
+}

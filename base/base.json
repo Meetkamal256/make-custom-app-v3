@@ -1,0 +1,17 @@
+{
+  "baseUrl": "https://app-academy.make.com/api/v3",
+  "headers": {
+    "Authorization": "Bearer {{connection.accessToken}}"
+  },
+  
+  "response": {
+    "valid": "{{!body.error || !body.errors}}",
+    "error": {
+      "message": "[{{statusCode}}] {{ifempty(body.error.message, body.errors)}}"
+    }
+  },
+  
+  "log": {
+    "sanitize": ["request.headers.authorization"]
+  }
+}

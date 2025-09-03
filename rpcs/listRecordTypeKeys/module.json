@@ -1,0 +1,17 @@
+{
+  "url": "/recordTypes/{{parameters.recordType}}",
+  "method": "GET",
+  "qs": {},
+  "body": {},
+  "headers": {},
+  "response": {
+    "iterate": {
+      "container": "{{body.recordParameters}}",
+      "condition": "{{item.readable === true}}"
+    },
+    "output": {
+      "label": "{{item.label}}",
+      "value": "{{item.name}}"
+    }
+  }
+}
