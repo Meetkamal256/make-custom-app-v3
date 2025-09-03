@@ -1,0 +1,22 @@
+{
+  "url": "/files",
+  "method": "GET",
+  "headers": {},
+  "qs": {
+    "parent": "{{parsePath(parameters.parent)}}"
+  },
+  "response": {
+    "iterate": {
+      "condition": "{{if(parameters.type, item.type === parameters.type, true)}}",
+      "container": "{{body.items}}"
+    },
+    "output": "{{item}}",
+    "limit": "{{parameters.limit}}" 
+  },
+  "pagination": {
+    "condition": "{{(pagination.page - 1) * 5 < parameters.limit && body.totalRecordsReturned > (pagination.page - 1) * 5}}",
+    "qs": {
+      "page": "{{(pagination.page - 1)}}"
+    }
+  }
+}
