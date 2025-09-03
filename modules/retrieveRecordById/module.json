@@ -1,0 +1,11 @@
+{
+  "url": "/{{parameters.recordType}}/{{parameters.id}}",
+  "method": "GET",
+  "response": {
+    "output": {
+      "{{...}}": "{{omit(body, 'createdAt', 'updatedAt')}}",
+      "createdAt": "{{parseDate(body.createdAt, 'YYYY-MM-DDTHH:mm:ss+Z')}}",
+      "updatedAt": "{{parseDate(body.updatedAt, 'YYYY-MM-DDTHH:mm:ss+Z')}}"
+    }
+  }
+}

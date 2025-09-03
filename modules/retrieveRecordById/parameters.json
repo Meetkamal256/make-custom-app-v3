@@ -1,0 +1,22 @@
+[
+  {
+    "name": "recordType",
+    "type": "select",
+    "label": "Record Type Name",
+    "required": true,
+    "help": "Type of the record to retrieve e.g movie",
+    "options": {
+      "store": "rpc://listRecordTypes?filter=readable",
+      "nested": [
+        {
+          "name": "id",
+          "type": "select",
+          "label": "Record ID",
+          "required": true,
+          "options": "rpc://listRecords",
+          "help": "A record ID to be retrieved."
+        }
+      ]
+    }
+  }
+]
