@@ -1,0 +1,18 @@
+[
+  {
+    "url": "/{{parameters.recordType}}/{{parameters.id}}",
+    "method": "PATCH",
+    "headers": {},
+    "qs": {},
+    "body": {
+      "{{...}}": "{{formatDatesInObject(omit(parameters,'recordType', 'id'))}}"
+    },
+
+    "response": {
+      "output": {
+        "{{...}}": "{{parseDatesInObject(body, 'YYYY-MM-DDTHH:mm:ss+Z')}}"
+      },
+      "valid": "{{!body.errors}}"
+    }
+  }
+]
