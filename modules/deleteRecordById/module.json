@@ -1,0 +1,9 @@
+{
+  "url": "/{{parameters.recordType}}/{{parameters.id}}",
+  "method": "DELETE",
+  "headers": {},
+  "qs": {},
+  "response": {
+    "output": "{{undefined}}"
+  }
+}

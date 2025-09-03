@@ -1,0 +1,22 @@
+[
+  {
+    "name": "recordType",
+    "label": "Record Type",
+    "type": "select",
+    "help": "Type of the record to delete, e.g., movie.",
+    "required": true,
+    "options": {
+      "store": "rpc://listRecordTypes?filter=deletable",
+      "nested": [
+        {
+          "name": "id",
+          "type": "select",
+          "label": "Record ID",
+          "required": true,
+          "options": "rpc://listRecords",
+          "help": "A record ID to be deleted."
+        }
+      ]
+    }
+  }
+]
