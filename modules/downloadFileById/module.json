@@ -1,0 +1,12 @@
+{
+  "url": "/files/{{parameters.id}}/export",
+  "method": "GET",
+  "response": {
+    "output": {
+      "output": {
+        "name": "{{replace(replace(headers[\"content-disposition\"]; 'attachment; filename='; ''); '\"'; '')}}",
+        "data": "{{body}}"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "url": "/files/{{last(split(parameters.file, '/'))}}", 
+  "method": "DELETE",
+  "headers": {}, 
+  "qs": {}, 
+
+  "response": {
+    "output": "{{undefined}}",
+    "valid": "{{!body.error.message}}"
+  }
+}

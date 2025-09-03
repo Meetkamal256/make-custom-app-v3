@@ -1,0 +1,14 @@
+[
+  {
+    "name": "file",
+    "label": "File ID",
+    "type": "file",
+    "help": "A file ID to be deleted.",
+    "required": true,
+    "options": {
+      "store": "rpc://listFiles",
+      "ids": true,
+      "showRoot": false
+    }
+  }
+]
