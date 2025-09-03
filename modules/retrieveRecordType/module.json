@@ -1,0 +1,9 @@
+{
+  "url": "/recordTypes/{{parameters.name}}",
+  "method": "GET",
+  "response": {
+    "output": {
+      "recordParameters": "{{body.recordParameters}}"
+    }
+  }
+}
