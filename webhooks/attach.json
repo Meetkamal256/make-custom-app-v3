@@ -10,7 +10,7 @@
     "response": {
       "data": {
         "externalHookId": "{{body.hookId}}",
-        "secretKey": "274c0b9b-64de-41e2-be1d-3d34f43d84f5"
+       "secretKey": "{{process.env.WEBHOOK_SECRET}}"
       },
       "valid": "{{!body.error.message}}"
     }
