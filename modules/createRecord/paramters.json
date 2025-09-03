@@ -1,0 +1,13 @@
+[
+  {
+    "name": "recordType",
+    "label": "Record Type",
+    "type": "select",
+    "help": "Type of the record to create, e.g., movie.",
+    "required": true,
+    "options": {
+      "store": "rpc://listRecordTypes?filter=creatable",
+      "nested": "rpc://listRecordTypeFields?mode=create"
+    }
+  }
+]
