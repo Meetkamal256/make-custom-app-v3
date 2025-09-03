@@ -1,0 +1,20 @@
+{
+  "temp": {
+    "receivedSignature": "{{headers.`Signature`}}",
+    "signatureFromPayload": "{{sha256(createJSON(body),, '274c0b9b-64de-41e2-be1d-3d34f43d84f5')}}"
+  },
+  "verification": {
+    "condition": "{{true}}",
+    "respond": {
+      "status": "{{if(temp.receivedSignature === temp.signatureFromPayload, 200, 400)}}",
+      "type": "json",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "message": "{{if(temp.receivedSignature === temp.signatureFromPayload, undefined, 'Invalid signature')}}"
+      }
+    }
+  },
+  "output": "{{body}}"
+}

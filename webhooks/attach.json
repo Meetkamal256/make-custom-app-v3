@@ -1,0 +1,18 @@
+[
+  {
+    "url": "/webhooks",
+    "method": "POST",
+    "body": {
+      "url": "{{webhook.url}}",
+      "recordType": "{{parameters.recordType}}",
+      "secretKey": "274c0b9b-64de-41e2-be1d-3d34f43d84f5"
+    },
+    "response": {
+      "data": {
+        "externalHookId": "{{body.hookId}}",
+        "secretKey": "274c0b9b-64de-41e2-be1d-3d34f43d84f5"
+      },
+      "valid": "{{!body.error.message}}"
+    }
+  }
+]
